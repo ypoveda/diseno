@@ -1,15 +1,12 @@
 # Core Streamlit
-streamlit==1.28.0
+streamlit>=1.39.0
 
 # Data manipulation
-pandas==2.0.3
-numpy==1.24.3
+pandas>=2.2.0
+numpy>=1.26.0
 
 # Visualization
-plotly==5.17.0
+plotly>=5.24.0
 
-# Statistical analysis (for polynomial models)
-scipy==1.11.3
-
-# Optional: For better performance
-openpyxl==3.1.2
+# Statistical analysis
+scipy>=1.14.0
