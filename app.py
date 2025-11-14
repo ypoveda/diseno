@@ -23,118 +23,296 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Force light theme
+st.markdown("""
+    <style>
+        /* Force light theme - override dark mode */
+        :root, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+            background-color: #ffffff !important;
+        }
+        
+        /* Main content area */
+        .main .block-container {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* All text should be dark on light background */
+        body, p, span, div, label, .stMarkdown {
+            color: #1e1e1e !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # ============================================================================
 # CSS PERSONALIZADO (Colores USTA)
 # ============================================================================
 
 st.markdown("""
     <style>
-        /* Colores de Marca USTA */
+        /* ============================================ */
+        /* LIGHT THEME - EXCELLENT CONTRAST           */
+        /* ============================================ */
+        
+        /* Force white backgrounds everywhere */
         :root {
             --primary: #0a2f6b;
-            --accent: #f9a602;
-            --teal: #1c9c9c;
+            --accent: #f59e0b;
+            --success: #059669;
+            --info: #0284c7;
         }
         
-        /* Encabezados */
-        h1, h2, h3 {
-            color: var(--primary) !important;
+        /* Main app background */
+        .stApp {
+            background-color: #ffffff !important;
         }
         
-        /* Métricas */
-        [data-testid="stMetricValue"] {
-            font-size: 28px;
-            color: var(--primary) !important;
-            font-weight: 700;
+        /* Main content area */
+        [data-testid="stAppViewContainer"] {
+            background-color: #ffffff !important;
         }
         
-        [data-testid="stMetricLabel"] {
+        /* Ensure all text is dark */
+        body, p, span, div, label, li, td, th {
             color: #1e1e1e !important;
-            font-weight: 600;
         }
         
-        [data-testid="stMetricDelta"] {
-            font-weight: 600;
+        /* Headers - USTA Navy */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary) !important;
+            font-weight: 700 !important;
         }
         
-        /* Barra lateral */
+        /* Subheaders */
+        .stMarkdown h2, .stMarkdown h3 {
+            color: var(--primary) !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        /* ============================================ */
+        /* SIDEBAR - Light gray background             */
+        /* ============================================ */
+        
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+            background-color: #f8fafc !important;
+            border-right: 1px solid #e2e8f0;
         }
         
+        section[data-testid="stSidebar"] * {
+            color: #1e1e1e !important;
+        }
+        
+        section[data-testid="stSidebar"] h1,
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] h3 {
             color: var(--primary) !important;
         }
         
-        section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-            color: #212529;
+        /* ============================================ */
+        /* METRICS - Bold and clear                    */
+        /* ============================================ */
+        
+        [data-testid="stMetric"] {
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
         }
         
-        /* Botones */
+        [data-testid="stMetricLabel"] {
+            color: #475569 !important;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important;
+        }
+        
+        [data-testid="stMetricValue"] {
+            color: var(--primary) !important;
+            font-weight: 700 !important;
+            font-size: 1.75rem !important;
+        }
+        
+        [data-testid="stMetricDelta"] {
+            font-weight: 600 !important;
+        }
+        
+        /* ============================================ */
+        /* BUTTONS - Navy with white text              */
+        /* ============================================ */
+        
         .stButton > button {
-            background-color: var(--primary);
-            color: white;
-            font-weight: 600;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s ease;
+            background-color: var(--primary) !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            border: 2px solid var(--primary) !important;
+            border-radius: 8px !important;
+            padding: 0.6rem 1.5rem !important;
+            transition: all 0.3s ease !important;
         }
         
         .stButton > button:hover {
-            background-color: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background-color: #ffffff !important;
+            color: var(--primary) !important;
+            border: 2px solid var(--primary) !important;
         }
         
-        /* Destacar valores seleccionados */
+        /* ============================================ */
+        /* HIGHLIGHT BOX - Amber/Yellow                */
+        /* ============================================ */
+        
         .selected-values {
-            background-color: #fef3c7;
-            color: #78350f;
-            padding: 1.25rem;
-            border-radius: 10px;
-            border-left: 5px solid #f59e0b;
-            font-weight: 500;
-            line-height: 1.6;
+            background-color: #fef3c7 !important;
+            color: #78350f !important;
+            padding: 1.25rem !important;
+            border-radius: 10px !important;
+            border-left: 5px solid #f59e0b !important;
+            font-weight: 500 !important;
+            line-height: 1.7 !important;
+            margin: 1rem 0 !important;
         }
         
-        .selected-values b {
-            color: #92400e;
-            font-weight: 700;
+        .selected-values b, .selected-values strong {
+            color: #78350f !important;
+            font-weight: 700 !important;
         }
         
-        /* Tabs */
+        /* ============================================ */
+        /* TABS - Clear hierarchy                      */
+        /* ============================================ */
+        
         .stTabs [data-baseweb="tab-list"] {
-            gap: 8px;
+            gap: 8px !important;
+            background-color: #f8fafc !important;
+            padding: 0.5rem !important;
+            border-radius: 8px !important;
         }
         
         .stTabs [data-baseweb="tab"] {
-            font-weight: 600;
-            color: #495057;
+            font-weight: 600 !important;
+            color: #64748b !important;
+            background-color: transparent !important;
+            border-radius: 6px !important;
+            padding: 0.5rem 1rem !important;
         }
         
-        .stTabs [aria-selected="true"] {
+        .stTabs [data-baseweb="tab"]:hover {
+            background-color: #e2e8f0 !important;
             color: var(--primary) !important;
         }
         
-        /* Info boxes */
-        .stAlert {
-            background-color: #e7f3ff;
-            color: #004085;
-            border-left: 4px solid #0c5ba0;
+        .stTabs [aria-selected="true"] {
+            background-color: var(--primary) !important;
+            color: #ffffff !important;
         }
         
-        /* Expander */
+        /* ============================================ */
+        /* DATAFRAMES - Clean tables                   */
+        /* ============================================ */
+        
+        [data-testid="stDataFrame"] {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+        }
+        
+        /* Table headers */
+        [data-testid="stDataFrame"] thead tr th {
+            background-color: #f1f5f9 !important;
+            color: #1e293b !important;
+            font-weight: 600 !important;
+            padding: 0.75rem !important;
+        }
+        
+        /* Table cells */
+        [data-testid="stDataFrame"] tbody tr td {
+            color: #1e1e1e !important;
+            padding: 0.75rem !important;
+        }
+        
+        /* Alternating rows */
+        [data-testid="stDataFrame"] tbody tr:nth-child(even) {
+            background-color: #f8fafc !important;
+        }
+        
+        /* ============================================ */
+        /* EXPANDERS - Collapsible sections            */
+        /* ============================================ */
+        
         .streamlit-expanderHeader {
-            font-weight: 600;
-            color: var(--primary);
+            background-color: #f8fafc !important;
+            color: var(--primary) !important;
+            font-weight: 600 !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 8px !important;
         }
         
-        /* Sliders */
-        .stSlider [data-testid="stTickBarMin"],
-        .stSlider [data-testid="stTickBarMax"] {
-            color: #495057 !important;
+        .streamlit-expanderHeader:hover {
+            background-color: #f1f5f9 !important;
+        }
+        
+        /* ============================================ */
+        /* SLIDERS - Better visibility                 */
+        /* ============================================ */
+        
+        .stSlider {
+            padding: 1rem 0 !important;
+        }
+        
+        .stSlider > label {
+            color: #1e293b !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Slider track */
+        .stSlider [data-baseweb="slider"] {
+            background-color: #e2e8f0 !important;
+        }
+        
+        /* Slider thumb */
+        .stSlider [role="slider"] {
+            background-color: var(--primary) !important;
+        }
+        
+        /* Slider labels */
+        .stSlider [data-testid="stTickBar"] {
+            color: #64748b !important;
+        }
+        
+        /* ============================================ */
+        /* SELECT BOXES & RADIO - Clean inputs         */
+        /* ============================================ */
+        
+        .stSelectbox > label,
+        .stRadio > label {
+            color: #1e293b !important;
+            font-weight: 600 !important;
+        }
+        
+        .stSelectbox [data-baseweb="select"],
+        .stRadio [role="radiogroup"] {
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+        
+        /* ============================================ */
+        /* DIVIDERS - Subtle separators                */
+        /* ============================================ */
+        
+        hr {
+            border-top: 2px solid #e2e8f0 !important;
+            margin: 2rem 0 !important;
+        }
+        
+        /* ============================================ */
+        /* PLOTLY CHARTS - White background            */
+        /* ============================================ */
+        
+        .js-plotly-plot {
+            background-color: #ffffff !important;
+        }
+        
+        .plotly .gtitle {
+            color: #1e1e1e !important;
         }
     </style>
 """, unsafe_allow_html=True)
