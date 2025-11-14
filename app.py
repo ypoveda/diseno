@@ -44,34 +44,97 @@ st.markdown("""
         /* Métricas */
         [data-testid="stMetricValue"] {
             font-size: 28px;
-            color: var(--primary);
+            color: var(--primary) !important;
+            font-weight: 700;
+        }
+        
+        [data-testid="stMetricLabel"] {
+            color: #1e1e1e !important;
+            font-weight: 600;
+        }
+        
+        [data-testid="stMetricDelta"] {
+            font-weight: 600;
         }
         
         /* Barra lateral */
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 100%);
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        section[data-testid="stSidebar"] h2,
+        section[data-testid="stSidebar"] h3 {
+            color: var(--primary) !important;
+        }
+        
+        section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+            color: #212529;
         }
         
         /* Botones */
         .stButton > button {
-            background-color: var(--accent);
-            color: var(--primary);
+            background-color: var(--primary);
+            color: white;
             font-weight: 600;
-            border: none;
+            border: 2px solid var(--primary);
             border-radius: 8px;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
         }
         
         .stButton > button:hover {
-            background-color: #ffd166;
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
         
         /* Destacar valores seleccionados */
         .selected-values {
-            background-color: #fff3cd;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
+            background-color: #fef3c7;
+            color: #78350f;
+            padding: 1.25rem;
+            border-radius: 10px;
+            border-left: 5px solid #f59e0b;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .selected-values b {
+            color: #92400e;
+            font-weight: 700;
+        }
+        
+        /* Tabs */
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 8px;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .stTabs [aria-selected="true"] {
+            color: var(--primary) !important;
+        }
+        
+        /* Info boxes */
+        .stAlert {
+            background-color: #e7f3ff;
+            color: #004085;
+            border-left: 4px solid #0c5ba0;
+        }
+        
+        /* Expander */
+        .streamlit-expanderHeader {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Sliders */
+        .stSlider [data-testid="stTickBarMin"],
+        .stSlider [data-testid="stTickBarMax"] {
+            color: #495057 !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -335,10 +398,12 @@ if st.sidebar.button("🎯 Establecer a Valores Óptimos"):
     st.rerun()
 
 st.sidebar.markdown("---")
-st.sidebar.info("""
-**Referencia del Paper:**  
-Yaguas, O. J. (2017). Metodología de superficie de respuesta para la optimización de una producción agrícola.
-""")
+st.sidebar.markdown("""
+    <div style='background-color: #e7f3ff; color: #004085; padding: 1rem; border-radius: 8px; border-left: 4px solid #0c5ba0;'>
+        <strong>📚 Referencia del Paper:</strong><br>
+        Yaguas, O. J. (2017). Metodología de superficie de respuesta para la optimización de una producción agrícola.
+    </div>
+""", unsafe_allow_html=True)
 
 # ============================================================================
 # CONTENIDO PRINCIPAL - PESTAÑAS
@@ -478,7 +543,12 @@ with tab2:
                                     f"Puntos de Datos de {response}", selected_point)
         st.plotly_chart(fig2, use_container_width=True)
     
-    st.info("💡 **Sugerencia:** El punto rojo 💎 en los gráficos muestra tu selección actual de los controles deslizantes.")
+    st.markdown("""
+        <div style='background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; border-left: 4px solid #28a745; margin-top: 1rem;'>
+            <strong>💡 Sugerencia:</strong> El punto rojo 💎 en los gráficos muestra tu selección actual de los controles deslizantes. 
+            Puedes rotar los gráficos arrastrando con el mouse para ver mejor la superficie.
+        </div>
+    """, unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------
 # PESTAÑA 3: SOLUCIÓN ÓPTIMA
@@ -535,6 +605,15 @@ with tab3:
         La deseabilidad combinada de 0.74 significa que esta solución logra el 74% del 
         rendimiento ideal en los cuatro objetivos (Producción, EUN, EUA, RBC) simultáneamente.
         """)
+    
+    st.markdown("""
+        <div style='background-color: #d1ecf1; color: #0c5460; padding: 1rem; border-radius: 8px; border-left: 4px solid #17a2b8; margin-top: 1rem;'>
+            <strong>💡 ¿Qué significa esto?</strong><br>
+            Un valor de 0.74 es excelente. Significa que encontramos un balance óptimo donde todas las métricas 
+            (producción, eficiencia de nitrógeno, eficiencia de agua, y beneficio-costo) están cerca de sus 
+            valores ideales al mismo tiempo.
+        </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -655,13 +734,15 @@ with tab4:
     
     st.markdown("---")
     
-    st.info("""
-    **Ideas Clave:**
-    - La Relación Beneficio-Costo (RBC) de 2.3 significa que por cada $1 invertido, se obtienen $2.30 de retorno
-    - Los costos de agua y nitrógeno son mínimos comparados con los costos de producción fijos
-    - La solución óptima prioriza la eficiencia sobre la producción máxima
-    - Precio del maíz asumido: $0.30/kg
-    """)
+    st.markdown("""
+        <div style='background-color: #d4edda; color: #155724; padding: 1.25rem; border-radius: 8px; border-left: 4px solid #28a745; line-height: 1.7;'>
+            <strong>💡 Ideas Clave:</strong><br>
+            • La Relación Beneficio-Costo (RBC) de 2.3 significa que por cada $1 invertido, se obtienen $2.30 de retorno<br>
+            • Los costos de agua y nitrógeno son mínimos comparados con los costos de producción fijos<br>
+            • La solución óptima prioriza la eficiencia sobre la producción máxima<br>
+            • Precio del maíz asumido: $0.30/kg
+        </div>
+    """, unsafe_allow_html=True)
 
 # ============================================================================
 # PIE DE PÁGINA
