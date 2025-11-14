@@ -459,7 +459,7 @@ with tab1:
         'Unidad': ['m³/ha', 'kg/ha', 'plantas/m²'],
         'Niveles': ['1100, 2050, 3000', '0, 75, 150', '3.3, 6.65, 10.0']
     })
-    st.dataframe(factor_summary, use_container_width=True, hide_index=True)
+    st.dataframe(factor_summary, width='stretch', hide_index=True)
     
     st.subheader("Rangos de Respuestas")
     response_summary = pd.DataFrame({
@@ -470,13 +470,13 @@ with tab1:
         'Unidad': ['kg/ha', 'kg/kg', 'kg/m³', '-'],
         'Objetivo': ['Maximizar', 'Maximizar', 'Maximizar', 'Maximizar']
     })
-    st.dataframe(response_summary, use_container_width=True, hide_index=True)
+    st.dataframe(response_summary, width='stretch', hide_index=True)
     
     st.markdown("---")
     
     # Mostrar datos sin procesar
     with st.expander("📋 Ver Conjunto de Datos Completo (48 corridas)"):
-        st.dataframe(data, use_container_width=True)
+        st.dataframe(data, width='stretch')
 
 # ----------------------------------------------------------------------------
 # PESTAÑA 2: VISUALIZACIONES
@@ -531,7 +531,7 @@ with tab2:
         else:
             fig1 = create_scatter_3d(data, "Irrigation", "Nitrogen", response,
                                     f"Puntos de Datos de {response}", selected_point)
-        st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, width='stretch')
     
     with col2:
         st.subheader(f"{response} vs Nitrógeno × Densidad")
@@ -541,7 +541,7 @@ with tab2:
         else:
             fig2 = create_scatter_3d(data, "Nitrogen", "Density", response,
                                     f"Puntos de Datos de {response}", selected_point)
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
     
     st.markdown("""
         <div style='background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; border-left: 4px solid #28a745; margin-top: 1rem;'>
@@ -646,7 +646,7 @@ with tab3:
             'Óptimo': '{:.1f}',
             'Diferencia %': '{:+.1f}%'
         }),
-        use_container_width=True,
+        width='stretch',
         hide_index=True
     )
 
@@ -714,7 +714,7 @@ with tab4:
             hole=0.3
         )])
         fig1.update_layout(title="Tu Distribución de Costos", height=300)
-        st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, width='stretch')
     
     with col2:
         st.markdown("**Solución Óptima**")
@@ -730,7 +730,7 @@ with tab4:
             hole=0.3
         )])
         fig2.update_layout(title="Distribución de Costos Óptima", height=300)
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
     
     st.markdown("---")
     
