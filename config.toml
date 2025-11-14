@@ -1,0 +1,11 @@
+[theme]
+# Force light theme with excellent contrast
+primaryColor = "#0a2f6b"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f8fafc"
+textColor = "#1e1e1e"
+font = "sans serif"
+
+[client]
+showErrorDetails = false
+toolbarMode = "minimal"
