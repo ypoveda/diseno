@@ -1,5 +1,6 @@
 [theme]
 # Force light theme with excellent contrast
+base = "light"
 primaryColor = "#0a2f6b"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f8fafc"
@@ -9,3 +10,6 @@ font = "sans serif"
 [client]
 showErrorDetails = false
 toolbarMode = "minimal"
+
+[server]
+headless = true
