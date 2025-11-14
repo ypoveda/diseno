@@ -288,10 +288,79 @@ st.markdown("""
             font-weight: 600 !important;
         }
         
-        .stSelectbox [data-baseweb="select"],
-        .stRadio [role="radiogroup"] {
+        /* Select box container - force white background */
+        .stSelectbox [data-baseweb="select"] {
             background-color: #ffffff !important;
             border: 1px solid #cbd5e1 !important;
+        }
+        
+        /* Select box dropdown list */
+        .stSelectbox [data-baseweb="select"] > div {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* Select box selected value */
+        .stSelectbox [data-baseweb="select"] input {
+            color: #1e1e1e !important;
+        }
+        
+        /* Select box placeholder */
+        .stSelectbox [data-baseweb="select"] [data-baseweb="input"] {
+            color: #1e1e1e !important;
+            background-color: #ffffff !important;
+        }
+        
+        /* Dropdown menu itself */
+        [data-baseweb="popover"] {
+            background-color: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* Dropdown menu items */
+        [role="listbox"] {
+            background-color: #ffffff !important;
+        }
+        
+        [role="option"] {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        [role="option"]:hover {
+            background-color: #f1f5f9 !important;
+            color: var(--primary) !important;
+        }
+        
+        [aria-selected="true"][role="option"] {
+            background-color: #e0e7ff !important;
+            color: var(--primary) !important;
+        }
+        
+        /* Radio buttons */
+        .stRadio [role="radiogroup"] {
+            background-color: transparent !important;
+        }
+        
+        .stRadio [role="radio"] {
+            background-color: #ffffff !important;
+            border: 2px solid #cbd5e1 !important;
+        }
+        
+        .stRadio [role="radio"][aria-checked="true"] {
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+        
+        .stRadio label {
+            color: #1e1e1e !important;
+        }
+        
+        /* Radio button text */
+        .stRadio > div > label > div:last-child {
+            color: #1e1e1e !important;
         }
         
         /* ============================================ */
@@ -313,6 +382,85 @@ st.markdown("""
         
         .plotly .gtitle {
             color: #1e1e1e !important;
+        }
+        
+        /* ============================================ */
+        /* ADDITIONAL OVERRIDES - Nuclear option       */
+        /* ============================================ */
+        
+        /* Force all backgrounds to be light */
+        div, section, article, aside {
+            background-color: transparent !important;
+        }
+        
+        /* Except these which should be white */
+        .main, .block-container, [data-testid="stVerticalBlock"] {
+            background-color: #ffffff !important;
+        }
+        
+        /* All text inputs */
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+        
+        /* Number inputs */
+        .stNumberInput input {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* Text inputs */
+        .stTextInput input {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* Text areas */
+        .stTextArea textarea {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* Dropdown overlays */
+        [data-baseweb="menu"],
+        [data-baseweb="popover"],
+        [role="listbox"],
+        [role="menu"] {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* All list items in dropdowns */
+        li[role="option"],
+        li[role="menuitem"] {
+            background-color: #ffffff !important;
+            color: #1e1e1e !important;
+        }
+        
+        li[role="option"]:hover,
+        li[role="menuitem"]:hover {
+            background-color: #f1f5f9 !important;
+        }
+        
+        /* Code blocks if any */
+        code, pre {
+            background-color: #f8fafc !important;
+            color: #1e1e1e !important;
+        }
+        
+        /* Tooltips */
+        [data-baseweb="tooltip"] {
+            background-color: #1e293b !important;
+            color: #ffffff !important;
+        }
+        
+        /* Ensure spinner/loading is visible */
+        .stSpinner > div {
+            border-color: var(--primary) !important;
         }
     </style>
 """, unsafe_allow_html=True)
