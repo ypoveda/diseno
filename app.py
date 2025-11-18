@@ -1290,7 +1290,7 @@ with tab3:
             'Tu Selección': '{:.1f}',
             'Óptimo': '{:.1f}',
             'Diferencia %': '{:+.1f}%'
-        }).background_gradient(subset=['Diferencia %'], cmap='RdYlGn_r', vmin=-50, vmax=50),
+        }),
         width='stretch',
         hide_index=True
     )
