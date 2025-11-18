@@ -780,9 +780,10 @@ def create_contour_plot(data, x_col, y_col, z_col, title, selected_point=None):
         paper_bgcolor='white'
     )
     
-    fig.update_xaxis(gridcolor='lightgray')
-    fig.update_yaxis(gridcolor='lightgray')
+    fig.update_xaxes(showgrid=True, gridcolor='lightgray')
+    fig.update_yaxes(showgrid=True, gridcolor='lightgray')
     
+        
     return fig
 
 def create_sensitivity_analysis(base_values, response='Production'):
