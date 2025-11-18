@@ -849,8 +849,8 @@ def create_sensitivity_analysis(base_values, response='Production'):
         paper_bgcolor='white'
     )
     
-    fig.update_xaxis(gridcolor='lightgray')
-    fig.update_yaxis(gridcolor='lightgray')
+    fig.update_xaxes(showgrid=True, gridcolor='lightgray')
+    fig.update_yaxes(showgrid=True, gridcolor='lightgray')
     
     return fig
 
