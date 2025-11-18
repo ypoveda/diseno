@@ -596,12 +596,12 @@ def calculate_metrics(irrigation, nitrogen, density):
     }
 
 @st.cache_data
-def create_surface_data(x_range, y_range, z_func, n_points=50):
+def create_surface_data(x_range, y_range, _z_func, n_points=50):
     """Crear datos de superficie optimizados"""
     x = np.linspace(x_range[0], x_range[1], n_points)
     y = np.linspace(y_range[0], y_range[1], n_points)
     X, Y = np.meshgrid(x, y)
-    Z = z_func(X, Y)
+    Z = _z_func(X, Y)
     return x, y, Z
 
 def create_3d_surface(data, x_col, y_col, z_col, title, selected_point=None):
